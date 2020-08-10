@@ -1,5 +1,6 @@
 package com.udacity.doglists.demo.services;
 
+import com.udacity.doglists.demo.exceptions.DogNotFound;
 import com.udacity.doglists.demo.models.Dog;
 import com.udacity.doglists.demo.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class DogService {
 
     public Dog retrieveDogBreedById(long id){
         return dogRepository.findById(id)
-                .orElseThrow(NullPointerException::new);
+                .orElseThrow(() -> new DogNotFound("Dog not found", id));
     }
 
     public List<String> retrieveDogNames(){
