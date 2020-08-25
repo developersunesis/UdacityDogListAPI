@@ -1,5 +1,6 @@
 package com.udacity.doglists.demo.controllers;
 
+import com.udacity.doglists.demo.models.Dog;
 import com.udacity.doglists.demo.services.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,14 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class DogController {
+
 
     @Autowired
     DogService dogService;
 
     @GetMapping("/dogs")
-    public ResponseEntity<?> getAllDogBreeds(){
+    public ResponseEntity<List<Dog>> getAllDogBreeds(){
         return ResponseEntity.ok(dogService.retrieveDogBreed());
     }
 
@@ -29,7 +33,7 @@ public class DogController {
         }
     }
 
-    @GetMapping("/dog/name")
+    @GetMapping("/dog/names")
     public ResponseEntity<?> getAllDogNames(){
         return ResponseEntity.ok(dogService.retrieveDogNames());
     }
